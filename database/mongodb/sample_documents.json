@@ -1,0 +1,385 @@
+{
+  "households": {
+    "_id": "SCEAUX-01",
+    "location": "Sceaux (7 km from Paris)",
+    "country": "FR",
+    "data_source": "UCI ML Repository / Kaggle \u2014 Individual household electric power consumption",
+    "sampling_rate": "1 minute",
+    "sub_meters": [
+      {
+        "code": "kitchen",
+        "raw_column": "Sub_metering_1",
+        "area": "Kitchen",
+        "appliances": [
+          "dishwasher",
+          "oven",
+          "microwave"
+        ],
+        "unit": "Wh"
+      },
+      {
+        "code": "laundry",
+        "raw_column": "Sub_metering_2",
+        "area": "Laundry room",
+        "appliances": [
+          "washing machine",
+          "tumble-drier",
+          "refrigerator",
+          "light"
+        ],
+        "unit": "Wh"
+      },
+      {
+        "code": "water_heater_ac",
+        "raw_column": "Sub_metering_3",
+        "area": "Water heater & AC",
+        "appliances": [
+          "electric water-heater",
+          "air-conditioner"
+        ],
+        "unit": "Wh"
+      }
+    ]
+  },
+  "readings (observed minute)": {
+    "ts": {
+      "$date": "2006-12-16T17:24:00Z"
+    },
+    "meta": {
+      "household_id": "SCEAUX-01"
+    },
+    "is_missing": false,
+    "global_active_power_kw": 4.216,
+    "global_reactive_power_kvar": 0.418,
+    "voltage_v": 234.84,
+    "global_intensity_a": 18.4,
+    "sub_metering_wh": {
+      "kitchen": 0.0,
+      "laundry": 1.0,
+      "water_heater_ac": 17.0
+    }
+  },
+  "readings (missing minute)": {
+    "ts": {
+      "$date": "2006-12-21T11:23:00Z"
+    },
+    "meta": {
+      "household_id": "SCEAUX-01"
+    },
+    "is_missing": true
+  },
+  "daily_summaries": {
+    "household_id": "SCEAUX-01",
+    "date": {
+      "$date": "2008-12-24T00:00:00Z"
+    },
+    "year": 2008,
+    "month": 12,
+    "day_of_week": 3,
+    "observed_minutes": 1440,
+    "missing_minutes": 0,
+    "avg_active_power_kw": 0.8817,
+    "peak_active_power_kw": 3.878,
+    "voltage_v": {
+      "min": 236.94,
+      "max": 248.33
+    },
+    "total_energy_kwh": 21.1606,
+    "sub_metering_wh": {
+      "kitchen": 0.0,
+      "laundry": 364.0,
+      "water_heater_ac": 9981.0
+    },
+    "unmetered_wh": 10815.633,
+    "hourly": [
+      {
+        "hour": 0,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 0.2789,
+        "peak_active_power_kw": 0.354,
+        "energy_kwh": 0.2789,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 9.0,
+          "water_heater_ac": 0.0
+        }
+      },
+      {
+        "hour": 1,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 0.352,
+        "peak_active_power_kw": 0.63,
+        "energy_kwh": 0.352,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 44.0,
+          "water_heater_ac": 0.0
+        }
+      },
+      {
+        "hour": 2,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 0.2762,
+        "peak_active_power_kw": 0.478,
+        "energy_kwh": 0.2762,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 10.0,
+          "water_heater_ac": 0.0
+        }
+      },
+      {
+        "hour": 3,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 0.4699,
+        "peak_active_power_kw": 1.452,
+        "energy_kwh": 0.4699,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 40.0,
+          "water_heater_ac": 157.0
+        }
+      },
+      {
+        "hour": 4,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 0.6107,
+        "peak_active_power_kw": 1.48,
+        "energy_kwh": 0.6107,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 0.0,
+          "water_heater_ac": 344.0
+        }
+      },
+      {
+        "hour": 5,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 0.2802,
+        "peak_active_power_kw": 0.42,
+        "energy_kwh": 0.2802,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 11.0,
+          "water_heater_ac": 0.0
+        }
+      },
+      {
+        "hour": 6,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 0.7188,
+        "peak_active_power_kw": 3.878,
+        "energy_kwh": 0.7188,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 22.0,
+          "water_heater_ac": 0.0
+        }
+      },
+      {
+        "hour": 7,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 1.4643,
+        "peak_active_power_kw": 2.432,
+        "energy_kwh": 1.4643,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 0.0,
+          "water_heater_ac": 728.0
+        }
+      },
+      {
+        "hour": 8,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 1.3906,
+        "peak_active_power_kw": 1.542,
+        "energy_kwh": 1.3906,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 33.0,
+          "water_heater_ac": 1087.0
+        }
+      },
+      {
+        "hour": 9,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 1.4017,
+        "peak_active_power_kw": 1.64,
+        "energy_kwh": 1.4017,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 0.0,
+          "water_heater_ac": 1080.0
+        }
+      },
+      {
+        "hour": 10,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 1.475,
+        "peak_active_power_kw": 1.614,
+        "energy_kwh": 1.475,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 19.0,
+          "water_heater_ac": 1064.0
+        }
+      },
+      {
+        "hour": 11,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 0.6814,
+        "peak_active_power_kw": 1.452,
+        "energy_kwh": 0.6814,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 13.0,
+          "water_heater_ac": 335.0
+        }
+      },
+      {
+        "hour": 12,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 1.5447,
+        "peak_active_power_kw": 2.994,
+        "energy_kwh": 1.5447,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 0.0,
+          "water_heater_ac": 1075.0
+        }
+      },
+      {
+        "hour": 13,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 1.5441,
+        "peak_active_power_kw": 1.63,
+        "energy_kwh": 1.5441,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 32.0,
+          "water_heater_ac": 1090.0
+        }
+      },
+      {
+        "hour": 14,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 0.6666,
+        "peak_active_power_kw": 1.5,
+        "energy_kwh": 0.6666,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 0.0,
+          "water_heater_ac": 237.0
+        }
+      },
+      {
+        "hour": 15,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 0.4514,
+        "peak_active_power_kw": 0.566,
+        "energy_kwh": 0.4514,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 21.0,
+          "water_heater_ac": 0.0
+        }
+      },
+      {
+        "hour": 16,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 1.7164,
+        "peak_active_power_kw": 3.252,
+        "energy_kwh": 1.7164,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 12.0,
+          "water_heater_ac": 739.0
+        }
+      },
+      {
+        "hour": 17,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 2.1456,
+        "peak_active_power_kw": 3.318,
+        "energy_kwh": 2.1456,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 0.0,
+          "water_heater_ac": 1061.0
+        }
+      },
+      {
+        "hour": 18,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 1.4428,
+        "peak_active_power_kw": 1.716,
+        "energy_kwh": 1.4428,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 32.0,
+          "water_heater_ac": 984.0
+        }
+      },
+      {
+        "hour": 19,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 0.4279,
+        "peak_active_power_kw": 0.564,
+        "energy_kwh": 0.4279,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 0.0,
+          "water_heater_ac": 0.0
+        }
+      },
+      {
+        "hour": 20,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 0.4659,
+        "peak_active_power_kw": 0.578,
+        "energy_kwh": 0.4659,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 22.0,
+          "water_heater_ac": 0.0
+        }
+      },
+      {
+        "hour": 21,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 0.4444,
+        "peak_active_power_kw": 0.572,
+        "energy_kwh": 0.4444,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 11.0,
+          "water_heater_ac": 0.0
+        }
+      },
+      {
+        "hour": 22,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 0.4369,
+        "peak_active_power_kw": 0.492,
+        "energy_kwh": 0.4369,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 0.0,
+          "water_heater_ac": 0.0
+        }
+      },
+      {
+        "hour": 23,
+        "observed_minutes": 60,
+        "avg_active_power_kw": 0.4745,
+        "peak_active_power_kw": 0.558,
+        "energy_kwh": 0.4745,
+        "sub_metering_wh": {
+          "kitchen": 0.0,
+          "laundry": 33.0,
+          "water_heater_ac": 0.0
+        }
+      }
+    ]
+  }
+}
