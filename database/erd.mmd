@@ -1,0 +1,54 @@
+erDiagram
+    households ||--o{ sub_meters : "has"
+    households ||--o{ power_readings : "records"
+    households ||--o{ daily_consumption : "summarised as"
+    power_readings ||--o{ sub_meter_readings : "split into"
+    sub_meters ||--o{ sub_meter_readings : "measures"
+
+    households {
+        INT_UNSIGNED household_id PK
+        VARCHAR household_code UK
+        VARCHAR location
+        CHAR country
+        VARCHAR data_source
+        VARCHAR sampling_rate
+        TIMESTAMP created_at
+    }
+    sub_meters {
+        TINYINT_UNSIGNED sub_meter_id PK
+        INT_UNSIGNED household_id FK
+        VARCHAR meter_code
+        VARCHAR area
+        VARCHAR appliances
+        VARCHAR unit
+    }
+    power_readings {
+        BIGINT_UNSIGNED reading_id PK
+        INT_UNSIGNED household_id FK "UK with reading_ts"
+        DATETIME reading_ts "UK with household_id"
+        DECIMAL global_active_power_kw "target, NULL if missing"
+        DECIMAL global_reactive_power_kvar
+        DECIMAL voltage_v
+        DECIMAL global_intensity_a
+        BOOLEAN is_missing "generated"
+    }
+    sub_meter_readings {
+        BIGINT_UNSIGNED reading_id PK, FK
+        TINYINT_UNSIGNED sub_meter_id PK, FK
+        DECIMAL energy_wh
+    }
+    daily_consumption {
+        INT_UNSIGNED household_id PK, FK
+        DATE reading_date PK
+        SMALLINT observed_minutes
+        SMALLINT missing_minutes
+        DECIMAL avg_active_power_kw
+        DECIMAL peak_active_power_kw
+        DECIMAL min_voltage_v
+        DECIMAL max_voltage_v
+        DECIMAL total_active_energy_kwh
+        DECIMAL kitchen_wh
+        DECIMAL laundry_wh
+        DECIMAL water_heater_ac_wh
+        DECIMAL unmetered_wh
+    }

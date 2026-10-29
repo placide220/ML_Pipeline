@@ -1,0 +1,6 @@
+# Raw dataset (127 MB, over GitHub's 100 MB limit) — download from Kaggle/UCI
+household_power_consumption.txt
+
+.venv/
+__pycache__/
+.ipynb_checkpoints/
