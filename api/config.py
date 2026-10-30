@@ -1,5 +1,4 @@
-"""Central configuration. Everything that depends on the Task 2 schema lives here,
-so if a table/column/collection name differs in your repo you only change this file."""
+"""Names taken from database/01_schema.sql and database/mongodb/load_mongo.py."""
 import os
 from dotenv import load_dotenv
 
@@ -10,26 +9,16 @@ MYSQL = dict(
     port=int(os.getenv("MYSQL_PORT", "3306")),
     user=os.getenv("MYSQL_USER", "root"),
     password=os.getenv("MYSQL_PASSWORD", ""),
-    database=os.getenv("MYSQL_DATABASE", "power_db"),
+    database=os.getenv("MYSQL_DATABASE", "household_power"),
     charset="utf8mb4",
 )
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
-MONGO_DB = os.getenv("MONGO_DB", "power_db")
-DEFAULT_HOUSEHOLD_ID = int(os.getenv("DEFAULT_HOUSEHOLD_ID", "1"))
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://root:rootpass@localhost:27017/?authSource=admin")
+MONGO_DB = os.getenv("MONGO_DB", "household_power")
 
-# ---- SQL schema names (check against database/01_schema.sql) ----
-READINGS_TABLE = "power_readings"
-SUB_READINGS_TABLE = "sub_meter_readings"
-# sub_meters.sub_meter_id -> field name used in the API / Mongo "sub_metering" object
+# The API identifies a household by its code (MySQL households.household_code == Mongo meta.household_id).
+DEFAULT_HOUSEHOLD = os.getenv("DEFAULT_HOUSEHOLD", "SCEAUX-01")
+
+# Same field names in MySQL columns, Mongo documents and the API.
+MEASURES = ["global_active_power_kw", "global_reactive_power_kvar", "voltage_v", "global_intensity_a"]
+# sub_meters.sub_meter_id (MySQL) <-> key inside Mongo's `sub_metering_wh` object
 SUB_METER_IDS = {1: "kitchen", 2: "laundry", 3: "water_heater_ac"}
-SUB_READINGS_COLUMNS = dict(ts="reading_ts", meter="sub_meter_id", value="energy_wh")
-
-# ---- Mongo names (check against database/load_mongo.py) ----
-READINGS_COLLECTION = "readings"
-
-MEASURES = [
-    "global_active_power",
-    "global_reactive_power",
-    "voltage",
-    "global_intensity",
-]
