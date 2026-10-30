@@ -7,6 +7,7 @@ dataset (one household, one reading per minute, Dec 2006 – Nov 2010).
 | Part | Where |
 |---|---|
 | Exploratory analysis, analytical questions | [`dataset.ipynb`](dataset.ipynb) |
+| Forecasting model, experiments (Task 1C) | [`model_training.ipynb`](model_training.ipynb) — saved model in [`models/`](models/) |
 | Databases (MySQL + MongoDB) | [`database/`](database/) — design, ERD, queries and results in [`database/README.md`](database/README.md) |
 
 ## Running the databases
@@ -85,3 +86,28 @@ docker compose down -v     # stop and DELETE all data; the next `up` reloads MyS
 ```
 
 
+
+## Forecasting model (Task 1C)
+
+[`model_training.ipynb`](model_training.ipynb) trains a model that forecasts **next-hour Global active power (kW)**.
+
+- **Data:** `train.csv`, `validation.csv`, `test.csv` (cleaned minute data from Task 1A), averaged per hour.
+- **Features** (defined in `time_series_features.build_model_features()`, identical to `scripts/predict.py`): `lag_1`, `lag_2`, `lag_24`, `lag_168`, 7-day and 30-day moving averages, hour, day of week, weekend flag, month.
+- **Experiments:** Ridge regression, random forest and histogram gradient boosting, 52 hyperparameter settings tuned on the validation set, plus 3 naive baselines. All runs are logged in `models/experiments.csv`.
+- **Winner:** histogram gradient boosting (`learning_rate=0.03`, `max_iter=200`, `max_leaf_nodes=31`), refitted on train + validation.
+
+| Test set (Apr–Nov 2010, 5,189 hours) | MAE (kW) | RMSE (kW) | R² |
+|---|---|---|---|
+| Final model | 0.321 | 0.461 | 0.572 |
+| Best naive baseline (persistence) | 0.373 | 0.575 | 0.333 |
+
+Saved files used by the prediction script:
+
+```
+models/best_model.joblib      # scikit-learn model (predicts kW directly; do not pass --log-target)
+models/feature_columns.json   # feature order
+models/model_metadata.json    # parameters, data period, validation and test scores
+```
+
+To retrain: `pip install scikit-learn joblib nbconvert ipykernel`, then `jupyter nbconvert --to notebook --execute --inplace model_training.ipynb`
+(the notebook is generated from `scripts/build_training_notebook.py`). The model was saved with scikit-learn 1.9.1; load it with the same version.

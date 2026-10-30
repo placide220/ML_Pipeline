@@ -1,0 +1,24 @@
+{
+  "model": "Hist gradient boosting",
+  "experiment": "3 Gradient boosting",
+  "params": {
+    "learning_rate": 0.03,
+    "max_iter": 200,
+    "max_leaf_nodes": 31,
+    "l2_regularization": 1.0
+  },
+  "log_target_inside_model": false,
+  "target": "Global_active_power (kW), hourly mean, 1 hour ahead",
+  "trained_on": "2007-01-15 17:00:00 -> 2010-04-24 15:00:00 (28,678 hours)",
+  "validation": {
+    "MAE": 0.3653,
+    "RMSE": 0.529,
+    "R2": 0.6402
+  },
+  "test": {
+    "MAE": 0.3205,
+    "RMSE": 0.4605,
+    "R2": 0.5723
+  },
+  "scikit_learn_version": "1.9.1"
+}
