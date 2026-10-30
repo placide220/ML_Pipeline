@@ -1,0 +1,52 @@
+# Task 2 — databases for the Household Power Consumption time series.
+#   docker compose up -d to start mongodb and mysql 
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: power_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: household_power
+      MYSQL_USER: power
+      MYSQL_PASSWORD: powerpass
+    command:
+      - --innodb-buffer-pool-size=1G
+      - --innodb-redo-log-capacity=1G
+      # Empty = LOAD DATA INFILE may read any path; fine for a local container.
+      - --secure-file-priv=
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      # Scripts here run once, in alphabetical order, when the data volume is empty.
+      - ./database/mysql/01_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./database/mysql/02_load_data.sql:/docker-entrypoint-initdb.d/02_load_data.sql:ro
+      - ./household_power_consumption.txt:/data/household_power_consumption.txt:ro
+    healthcheck:
+      # TCP is disabled while the init scripts run, so this only passes once loading has finished.
+      test: ["CMD", "mysql", "-h", "127.0.0.1", "-upower", "-ppowerpass", "-e", "SELECT 1 FROM household_power.daily_consumption LIMIT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 60
+      start_period: 30s
+
+  mongo:
+    image: mongo:8.0
+    container_name: power_mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpass
+      MONGO_INITDB_DATABASE: household_power
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mysql_data:
+  mongo_data:
